@@ -10,36 +10,15 @@
   </head>
 
   <body>
-
-    <header class= "navbar navbar-fixed-top navbar-inverse">
-      <div class= "container">
-        <%link_to "pairbnb", '#', id: "logo" %>
-        <nav>
-          <ul class= "nav navbar-nav navbar-right">
-            <li><%= link_to "Home", '#' %></li>
-            <li><%= link_to "Help", '#' %></li>
-            <li>
-                <% if signed_in? %>
-                  Signed in as: <%= current_user.email %>
-                  <%= button_to 'Sign out', sign_out_path, method: :delete %>
-                <% else %>
-                  <%= link_to 'Sign in', sign_in_path %>
-                <% end %>
-                
-                <div id="flash">
+    <%= render 'layouts/header' %>
+    <div class= "container">
+    
+      <%= yield %>
+      <div id="flash">
           <% flash.each do |key, value| %>
             <div class="flash <%= key %>"><%= value %></div>
-          <% end %>
-            </li>
-          <ul>
-        </nav>
-      </div>
-    </header>
-
-    <div class= "container">
-
-        
-        <%= yield %>
+            <%end%>
+      <%= render 'layouts/footer' %>
     </div>
   </body>
 </html>
